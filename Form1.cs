@@ -49,6 +49,7 @@ namespace SnakeGame
 
         private void UpdateScreen(object sender, EventArgs e)
         {
+            label4.Text = Highscore.GetHighScore().ToString();
             //Check for Game Over
             if (Settings.IsGameOver)
             {
@@ -199,7 +200,19 @@ namespace SnakeGame
 
             else
             {
-                string message = "GAME OVER!!!\nYour Score is: " + Settings.Score + "\n\nPress ENTER Key to try again";
+                string message;
+             //   MessageBox.Show(Highscore.SetHighScore(Settings.Score).ToString());
+                //if the current score is the new highscore
+                if (Highscore.SetHighScore(Settings.Score)==true)
+                {
+                     message = "Reached High Score !!\nYour Score is: " + Settings.Score + "\n\nPress ENTER Key to try again";
+                    
+                }
+                //if the current score is not the new highscore
+                else
+                {
+                     message = "GAME OVER!!!\nYour Score is: " + Settings.Score + "\n\nPress ENTER Key to try again";
+                }
                 status_l.Text = message;
                 status_l.Visible = true;
             }
